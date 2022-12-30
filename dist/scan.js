@@ -68,9 +68,9 @@ const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
             config = fs.readFileSync(path + '/' + name + '.json', 'utf8');
             config = JSON.parse(config);
             config.imageUrl = path + '/' + name + '.jpg';
-            config.savePath = publicDir + '/image-ready/' + name + '.png';
-            config.savePathOI = publicDir + '/image-ready/' + name + '_oi.png';
-            config.savePathEM = publicDir + '/image-ready/' + name + '_em.png';
+            config.savePath = publicDir + '/image-ready/' + name + '/' + name + '.png';
+            config.savePathOI = publicDir + '/image-ready/' + name + '/' + name + '_oi.png';
+            config.savePathEM = publicDir + '/image-ready/' + name + '/' + name + '_em.png';
             yield wrapper(config);
         }
         catch (e) {
