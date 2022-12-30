@@ -1,0 +1,24 @@
+{
+  "name": "cron-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "scan": "npm run build && node dist/scan.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.11.13",
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "genetic-portrait-generator": "file:../generator",
+    "lodash": "^4.17.21",
+    "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4"
+  }
+}
