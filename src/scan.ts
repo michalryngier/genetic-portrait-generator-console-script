@@ -9,6 +9,9 @@ const publicDir = process.env.PUBLIC_DIR;
 const queuePath = publicDir + '/image-queue';
 const queueDir = fs.opendirSync(queuePath);
 let queueFolder = queueDir.readSync();
+let queueLock = publicDir + '/image-lock';
+
+let lockedFiles = fs.readdirSync(queueLock);
 
 const wrapper = async (config: any) => {
     const builder = new NoiseBuilder();
@@ -29,8 +32,15 @@ const wrapper = async (config: any) => {
 }
 
 (async () => {
-    if (queueFolder !== null) {
+    while (queueFolder !== null) {
+        const lockName = queueFolder.name + '.lock';
+        if (!queueFolder.isDirectory() || lockedFiles.includes(lockName)) {
+            queueFolder = queueDir.readSync();
+            continue;
+        }
         const name = queueFolder.name;
+        fs.writeFileSync(queueLock + '/' + lockName, '');
+
         const path = queuePath + '/' + name;
         let config = null;
         try {
@@ -45,6 +55,8 @@ const wrapper = async (config: any) => {
         } catch (e: any) {
             console.error(e.message);
         }
+        fs.unlinkSync(queueLock + '/' + lockName);
+        queueFolder = null;
     }
 })();
 

@@ -43,6 +43,8 @@ const publicDir = process.env.PUBLIC_DIR;
 const queuePath = publicDir + '/image-queue';
 const queueDir = fs.opendirSync(queuePath);
 let queueFolder = queueDir.readSync();
+let queueLock = publicDir + '/image-lock';
+let lockedFiles = fs.readdirSync(queueLock);
 const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
     const builder = new NoiseBuilder_1.default();
     builder.setChances(config.crossoverChance, config.mutationChance);
@@ -60,8 +62,14 @@ const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    if (queueFolder !== null) {
+    while (queueFolder !== null) {
+        const lockName = queueFolder.name + '.lock';
+        if (!queueFolder.isDirectory() || lockedFiles.includes(lockName)) {
+            queueFolder = queueDir.readSync();
+            continue;
+        }
         const name = queueFolder.name;
+        fs.writeFileSync(queueLock + '/' + lockName, '');
         const path = queuePath + '/' + name;
         let config = null;
         try {
@@ -76,6 +84,8 @@ const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
         catch (e) {
             console.error(e.message);
         }
+        fs.unlinkSync(queueLock + '/' + lockName);
+        queueFolder = null;
     }
 }))();
 //# sourceMappingURL=scan.js.map
