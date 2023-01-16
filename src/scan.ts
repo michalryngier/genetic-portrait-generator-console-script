@@ -57,6 +57,7 @@ const wrapper = async (config: any) => {
         }
         fs.unlinkSync(queueLock + '/' + lockName);
         queueFolder = null;
+        // queueFolder = queueDir.readSync();
     }
 })();
 
