@@ -1,6 +1,4 @@
 /node_modules
 .env
-/public/image-queue/*
-/public/image-ready/*
 /public/logs/*
 !/public/logs/.gitkeep
