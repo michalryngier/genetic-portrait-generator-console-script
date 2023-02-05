@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "scan": "npm run build && node dist/scan.js"
+    "scan": "npm run build && node dist/scan.js",
+    "rate": "npm run build && node dist/rate.js"
   },
   "author": "",
   "license": "ISC",
