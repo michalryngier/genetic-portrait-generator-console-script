@@ -85,7 +85,7 @@ const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
             console.error(e.message);
         }
         fs.unlinkSync(queueLock + '/' + lockName);
-        queueFolder = null;
+        queueFolder = queueDir.readSync();
     }
 }))();
 //# sourceMappingURL=scan.js.map

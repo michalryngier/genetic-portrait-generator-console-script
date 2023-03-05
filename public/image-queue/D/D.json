@@ -13,12 +13,12 @@
     "thicknessMax": 1,
     "thicknessMin": 1,
     "divider": 150,
-    "size": 5000
+    "size": 6000
   },
   "outputImageConfig": {
-    "scale": 1,
+    "scale": 2,
     "color": "FFFFFF",
     "bgColor": "000000",
-    "lerpColor": true
+    "lerpColor": false
   }
 }
