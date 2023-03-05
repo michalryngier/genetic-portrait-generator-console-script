@@ -1,7 +1,7 @@
 import fs from "fs";
-import {JimpImageInterface, Picture, Point} from "genetic-portrait-generator/dist/entities/graphics";
+import {JimpImageInterface, Picture, Point} from "@george_freeman/genetic-portrait-generator/dist/entities/graphics";
 import * as dotenv from 'dotenv';
-import {ColorHelper} from "genetic-portrait-generator/dist/helpers";
+import {ColorHelper} from "@george_freeman/genetic-portrait-generator/dist/helpers";
 
 dotenv.config();
 
@@ -18,11 +18,11 @@ let readyFolder = readyDir.readSync();
             continue;
         }
         const name = readyFolder.name;
-        const path = readyFolder + '/' + name;
-        const oi = publicDir + '/image-ready/' + name + '/' + name + '_oi.png';
-        const em = publicDir + '/image-ready/' + name + '/' + name + '_em.png';
-        const generated = publicDir + '/image-ready/' + name + '/' + name + '.png';
-        const ratingPath = publicDir + '/image-ready/' + name + '/' + name + '_rate.json';
+        const path = readyPath + '/' + name + '/';
+        const oi = path  + name + '/' + name + '_oi.png';
+        const em = path + name + '/' + name + '_em.png';
+        const generated = path + name + '.png';
+        const ratingPath = path + name + '_rate.json';
 
         const oiImage = new Picture(oi, true);
         const emImage = new Picture(em, true);

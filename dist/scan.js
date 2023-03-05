@@ -37,7 +37,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 const fs = __importStar(require("fs"));
-const NoiseBuilder_1 = __importDefault(require("genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder"));
+const NoiseBuilder_1 = __importDefault(require("@george_freeman/genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder"));
+const services_1 = require("@george_freeman/genetic-portrait-generator/dist/services");
+const WindowsLogger_1 = __importDefault(require("./loggers/WindowsLogger"));
 dotenv.config();
 const publicDir = process.env.PUBLIC_DIR;
 const queuePath = publicDir + '/image-queue';
@@ -46,6 +48,7 @@ let queueFolder = queueDir.readSync();
 let queueLock = publicDir + '/image-lock';
 let lockedFiles = fs.readdirSync(queueLock);
 const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
+    services_1.LoggerService._loggers = [new WindowsLogger_1.default()];
     const builder = new NoiseBuilder_1.default();
     builder.setChances(config.crossoverChance, config.mutationChance);
     builder.setNumberOfMixes(config.numberOfMixes);
@@ -85,7 +88,7 @@ const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
             console.error(e.message);
         }
         fs.unlinkSync(queueLock + '/' + lockName);
-        queueFolder = null;
+        queueFolder = queueDir.readSync();
     }
 }))();
 //# sourceMappingURL=scan.js.map

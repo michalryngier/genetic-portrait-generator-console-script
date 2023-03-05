@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv';
 import * as fs from "fs";
-import NoiseBuilder from "genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder";
+import NoiseBuilder from "@george_freeman/genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder";
+import { LoggerService } from '@george_freeman/genetic-portrait-generator/dist/services';
+import WindowsLogger from './loggers/WindowsLogger';
 
 dotenv.config();
 
@@ -14,6 +16,7 @@ let queueLock = publicDir + '/image-lock';
 let lockedFiles = fs.readdirSync(queueLock);
 
 const wrapper = async (config: any) => {
+    LoggerService._loggers = [new WindowsLogger()];
     const builder = new NoiseBuilder();
     builder.setChances(config.crossoverChance, config.mutationChance);
     builder.setNumberOfMixes(config.numberOfMixes);
@@ -56,8 +59,8 @@ const wrapper = async (config: any) => {
             console.error(e.message);
         }
         fs.unlinkSync(queueLock + '/' + lockName);
-        queueFolder = null;
-        // queueFolder = queueDir.readSync();
+        // queueFolder = null;
+        queueFolder = queueDir.readSync();
     }
 })();
 
