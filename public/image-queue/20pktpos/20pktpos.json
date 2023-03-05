@@ -16,8 +16,8 @@
     "size": 10000
   },
   "outputImageConfig": {
-    "scale": 5,
-    "color": "000000",
+    "scale": 1,
+    "color": "FF0000",
     "bgColor": "FFFFFF",
     "lerpColor": true
   }
