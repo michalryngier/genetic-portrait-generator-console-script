@@ -27,11 +27,6 @@ const wrapper = async (config: any) => {
     builder.createCauldron();
     builder.startCauldron();
     builder.saveImage(config.savePath);
-
-    if (builder.picture && builder.picture._oi && builder.picture._em) {
-        builder.picture._em.writeImage(config.savePathEM)
-        builder.picture._oi.writeImage(config.savePathOI)
-    }
 }
 
 (async () => {
@@ -50,9 +45,7 @@ const wrapper = async (config: any) => {
             config = fs.readFileSync(path + '/' + name + '.json', 'utf8');
             config = JSON.parse(config);
             config.imageUrl = path + '/' + name + '.jpg';
-            config.savePath = publicDir + '/image-ready/' + name + '/' + name + '.png';
-            config.savePathOI = publicDir + '/image-ready/' + name + '/' + name + '_oi.png';
-            config.savePathEM = publicDir + '/image-ready/' + name + '/' + name + '_em.png';
+            config.savePath = publicDir + '/image-ready/' + name + '.png';
 
             await wrapper(config);
         } catch (e: any) {

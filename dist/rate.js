@@ -51,11 +51,11 @@ let readyFolder = readyDir.readSync();
             continue;
         }
         const name = readyFolder.name;
-        const path = readyFolder + '/' + name;
-        const oi = publicDir + '/image-ready/' + name + '/' + name + '_oi.png';
-        const em = publicDir + '/image-ready/' + name + '/' + name + '_em.png';
-        const generated = publicDir + '/image-ready/' + name + '/' + name + '.png';
-        const ratingPath = publicDir + '/image-ready/' + name + '/' + name + '_rate.json';
+        const path = readyPath + '/' + name + '/';
+        const oi = path + name + '/' + name + '_oi.png';
+        const em = path + name + '/' + name + '_em.png';
+        const generated = path + name + '.png';
+        const ratingPath = path + name + '_rate.json';
         const oiImage = new graphics_1.Picture(oi, true);
         const emImage = new graphics_1.Picture(em, true);
         const generatedImage = new graphics_1.Picture(generated, true);
