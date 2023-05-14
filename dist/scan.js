@@ -61,29 +61,38 @@ const wrapper = (config) => __awaiter(void 0, void 0, void 0, function* () {
         builder.picture._oi.writeImage(config.savePathOI);
     }
 });
+function runForFile(fileName) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const path = queuePath + '/' + fileName;
+        let config = null;
+        try {
+            config = fs.readFileSync(path + '/' + fileName + '.json', 'utf8');
+            config = JSON.parse(config);
+            config.imageUrl = path + '/' + fileName + '.jpg';
+            config.savePath = publicDir + '/image-ready/' + fileName + '/' + fileName + '.png';
+            config.savePathOI = publicDir + '/image-ready/' + fileName + '/' + fileName + '_oi.png';
+            config.savePathEM = publicDir + '/image-ready/' + fileName + '/' + fileName + '_em.png';
+            yield wrapper(config);
+        }
+        catch (e) {
+            console.error(e.message);
+        }
+    });
+}
 (() => __awaiter(void 0, void 0, void 0, function* () {
+    if (process.argv[2]) {
+        yield runForFile(process.argv[2]);
+        return;
+    }
     while (queueFolder !== null) {
         const lockName = queueFolder.name + '.lock';
         if (!queueFolder.isDirectory() || lockedFiles.includes(lockName)) {
             queueFolder = queueDir.readSync();
             continue;
         }
-        const name = queueFolder.name;
+        const filename = queueFolder.name;
         fs.writeFileSync(queueLock + '/' + lockName, '');
-        const path = queuePath + '/' + name;
-        let config = null;
-        try {
-            config = fs.readFileSync(path + '/' + name + '.json', 'utf8');
-            config = JSON.parse(config);
-            config.imageUrl = path + '/' + name + '.jpg';
-            config.savePath = publicDir + '/image-ready/' + name + '/' + name + '.png';
-            config.savePathOI = publicDir + '/image-ready/' + name + '/' + name + '_oi.png';
-            config.savePathEM = publicDir + '/image-ready/' + name + '/' + name + '_em.png';
-            yield wrapper(config);
-        }
-        catch (e) {
-            console.error(e.message);
-        }
+        runForFile(filename);
         fs.unlinkSync(queueLock + '/' + lockName);
         queueFolder = queueDir.readSync();
     }

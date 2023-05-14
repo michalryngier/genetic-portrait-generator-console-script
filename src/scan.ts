@@ -31,34 +31,46 @@ const wrapper = async (config: any) => {
     }
 }
 
+async function runForFile(fileName: string) {
+    const path = queuePath + '/' + fileName;
+    let config = null;
+
+    try {
+        config = fs.readFileSync(path + '/' + fileName + '.json', 'utf8');
+        config = JSON.parse(config);
+        config.imageUrl = path + '/' + fileName + '.jpg';
+        config.savePath = publicDir + '/image-ready/' + fileName + '/' + fileName + '.png';
+        config.savePathOI = publicDir + '/image-ready/' + fileName + '/' + fileName + '_oi.png';
+        config.savePathEM = publicDir + '/image-ready/' + fileName + '/' + fileName + '_em.png';
+
+        await wrapper(config);
+    } catch (e: any) {
+        console.error(e.message);
+    }
+}
+
+
 (async () => {
+    if (process.argv[2]) {
+        await runForFile(process.argv[2]);
+        return;
+    }
+
     while (queueFolder !== null) {
         const lockName = queueFolder.name + '.lock';
         if (!queueFolder.isDirectory() || lockedFiles.includes(lockName)) {
             queueFolder = queueDir.readSync();
             continue;
         }
-        const name = queueFolder.name;
+
+        const filename = queueFolder.name;
         fs.writeFileSync(queueLock + '/' + lockName, '');
 
-        const path = queuePath + '/' + name;
-        let config = null;
-        try {
-            config = fs.readFileSync(path + '/' + name + '.json', 'utf8');
-            config = JSON.parse(config);
-            config.imageUrl = path + '/' + name + '.jpg';
-            config.savePath = publicDir + '/image-ready/' + name + '/' + name + '.png';
-            config.savePathOI = publicDir + '/image-ready/' + name + '/' + name + '_oi.png';
-            config.savePathEM = publicDir + '/image-ready/' + name + '/' + name + '_em.png';
+        runForFile(filename);
 
-            await wrapper(config);
-        } catch (e: any) {
-            console.error(e.message);
-        }
         fs.unlinkSync(queueLock + '/' + lockName);
-        // queueFolder = null;
+
         queueFolder = queueDir.readSync();
     }
 })();
-
 

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "scan": "npm run build && node dist/scan.js",
-    "rate": "npm run build && node dist/rate.js"
+    "scan": "node dist/scan.js",
+    "rate": "node dist/rate.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +14,7 @@
     "@types/node": "^18.11.13",
     "dotenv": "^16.0.3",
     "fs": "^0.0.1-security",
-    "genetic-portrait-generator": "file:../generator",
+    "genetic-portrait-generator": "^1.0.0",
     "lodash": "^4.17.21",
     "node-fetch": "^3.3.0"
   },
