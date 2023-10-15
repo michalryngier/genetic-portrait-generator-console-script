@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "scan": "npm run build && node dist/scan.js",
+    "raw-scan": "node dist/scan.js",
     "rate": "npm run build && node dist/rate.js"
   },
   "author": "",

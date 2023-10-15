@@ -1,0 +1,16 @@
+{
+  "edges": {
+    "ifWhiteBg": 0.9869449966865473,
+    "ifBlackBg": 0.013055003313452662,
+    "nofEdgePixels": 15090,
+    "allPixels": 1227600,
+    "edgePercent": 0.01229227761485826
+  },
+  "skinTone": {
+    "ifWhiteBg": 0.4864090225189938,
+    "ifBlackBg": 0.5135909774810062,
+    "nofSkinTonePixels": 160842,
+    "allPixels": 1227600,
+    "skinPercent": 0.13102150537634408
+  }
+}

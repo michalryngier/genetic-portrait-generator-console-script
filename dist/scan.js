@@ -81,7 +81,7 @@ function runForFile(fileName) {
 }
 (() => __awaiter(void 0, void 0, void 0, function* () {
     if (process.argv[2]) {
-        runForFile(process.argv[2]);
+        yield runForFile(process.argv[2]);
         return;
     }
     while (queueFolder !== null) {
