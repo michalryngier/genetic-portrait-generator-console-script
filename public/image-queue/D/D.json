@@ -2,7 +2,7 @@
   "crossoverChance": null,
   "mutationChance": null,
   "useRawImage": false,
-  "numberOfMixes": 100,
+  "numberOfMixes": 300,
   "populationConfig": {
     "maxPoint": {
       "x": 0,
