@@ -6,6 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "scan": "npm run build && node dist/scan.js",
+    "generate-random": "npm run build && node dist/generate-random.js",
     "raw-scan": "node dist/scan.js",
     "rate": "npm run build && node dist/rate.js"
   },
