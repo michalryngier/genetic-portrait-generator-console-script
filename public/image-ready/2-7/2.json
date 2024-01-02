@@ -1,0 +1,29 @@
+{
+  "useRawImage": false,
+  "crossoverChance": 0.30643442610661104,
+  "mutationChance": 0.000024317940752657325,
+  "numberOfMixes": 99,
+  "populationConfig": {
+    "maxPoint": {
+      "x": 1024,
+      "y": 1024
+    },
+    "nofPointsMax": 1,
+    "nofPointsMin": 1,
+    "thicknessMax": 2,
+    "thicknessMin": 1,
+    "divider": 84,
+    "size": 3176
+  },
+  "outputImageConfig": {
+    "scale": 1,
+    "color": "FFFFFF",
+    "bgColor": "000000",
+    "lerpColor": true
+  },
+  "imageUrl": "./public/image-queue/2/2.jpg",
+  "savePath": "./public/image-ready/2-7/2.png",
+  "savePathOI": "./public/image-ready/2-7/2_oi.png",
+  "savePathEM": "./public/image-ready/2-7/2_em.png",
+  "outputConfigFile": "./public/image-ready/2-7/2.json"
+}

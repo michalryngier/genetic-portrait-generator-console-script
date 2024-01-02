@@ -8,11 +8,11 @@
       "x": 0,
       "y": 0
     },
-    "nofPointsMax": 20,
-    "nofPointsMin": 10,
-    "thicknessMax": 2,
+    "nofPointsMax": 0,
+    "nofPointsMin": 0,
+    "thicknessMax": 3,
     "thicknessMin": 1,
-    "divider": 300,
+    "divider": 1500,
     "size": 15000
   },
   "outputImageConfig": {

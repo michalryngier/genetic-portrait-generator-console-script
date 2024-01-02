@@ -1,0 +1,24 @@
+{
+  "crossoverChance": null,
+  "mutationChance": null,
+  "useRawImage": false,
+  "numberOfMixes": 350,
+  "populationConfig": {
+    "maxPoint": {
+      "x": 0,
+      "y": 0
+    },
+    "nofPointsMax": 1,
+    "nofPointsMin": 1,
+    "thicknessMax": 2,
+    "thicknessMin": 1,
+    "divider": 1000,
+    "size": 1000
+  },
+  "outputImageConfig": {
+    "scale": 1,
+    "color": "000000",
+    "bgColor": "FFFFFF",
+    "lerpColor": true
+  }
+}
