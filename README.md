@@ -24,18 +24,18 @@ npm run scan
 ```
 która w parametrze może przyjąć nazwę pliku, np.: `npm run scan C`.
 
-### Instalacja i uruchamianie (Docker)
+### Instalacja i uruchamianie (Docker & docker compose)
 
 Budowanie obrazu
 
 ```bash
-docker build -t generator .
+docker compose up --build -d 
 ```
 
 Odpalenie komendy do generacji (`moj_folder` należy zamienić na nazwę folderu, w którym znajduje się plik ***.jpg** oraz ***.json**)
 
 ```bash
-docker run -t generator npm run scan moj_folder
+docker compose exec generator npm run scan moj_folder
 ```
 
 
