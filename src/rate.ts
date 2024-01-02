@@ -1,7 +1,7 @@
 import fs from "fs";
-import {JimpImageInterface, Picture, Point} from "genetic-portrait-generator/dist/entities/graphics";
+import {JimpImageInterface, Picture, Point} from "@george_freeman/genetic-portrait-generator/dist/entities/graphics";
 import * as dotenv from 'dotenv';
-import {ColorHelper} from "genetic-portrait-generator/dist/helpers";
+import {ColorHelper} from "@george_freeman/genetic-portrait-generator/dist/helpers";
 
 dotenv.config();
 

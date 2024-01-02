@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 import * as fs from "fs";
-import NoiseBuilder from "genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder";
+import NoiseBuilder from "@george_freeman/genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder";
 
 dotenv.config();
 
@@ -66,7 +66,7 @@ async function runForFile(fileName: string) {
         const filename = queueFolder.name;
         fs.writeFileSync(queueLock + '/' + lockName, '');
 
-        runForFile(filename);
+        await runForFile(filename);
 
         fs.unlinkSync(queueLock + '/' + lockName);
 

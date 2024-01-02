@@ -36,9 +36,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = __importDefault(require("fs"));
-const graphics_1 = require("genetic-portrait-generator/dist/entities/graphics");
+const graphics_1 = require("@george_freeman/genetic-portrait-generator/dist/entities/graphics");
 const dotenv = __importStar(require("dotenv"));
-const helpers_1 = require("genetic-portrait-generator/dist/helpers");
+const helpers_1 = require("@george_freeman/genetic-portrait-generator/dist/helpers");
 dotenv.config();
 const publicDir = process.env.PUBLIC_DIR;
 const readyPath = publicDir + '/image-ready';

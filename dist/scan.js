@@ -37,7 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 const fs = __importStar(require("fs"));
-const NoiseBuilder_1 = __importDefault(require("genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder"));
+const NoiseBuilder_1 = __importDefault(require("@george_freeman/genetic-portrait-generator/dist/entities/builders/noiseBuilder/NoiseBuilder"));
 dotenv.config();
 const publicDir = process.env.PUBLIC_DIR;
 const queuePath = publicDir + '/image-queue';
@@ -92,7 +92,7 @@ function runForFile(fileName) {
         }
         const filename = queueFolder.name;
         fs.writeFileSync(queueLock + '/' + lockName, '');
-        runForFile(filename);
+        yield runForFile(filename);
         fs.unlinkSync(queueLock + '/' + lockName);
         queueFolder = queueDir.readSync();
     }
